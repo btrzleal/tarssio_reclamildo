@@ -15,10 +15,12 @@ format:
       - right=2cm
       - top=2cm
       - bottom=2cm
+    fig-pos: 'h'
 editor: visual
 editor_options: 
   chunk_output_type: console
 pdf-engine: pdflatex
+
 ---
 
 ```{r}
@@ -46,37 +48,27 @@ Levando em consideração a imutabilidade das questões de raça no Brasil, A Le
 
 ## Introdução
 
-<!-- Na @fig-grafico-barra, temos os gráficos de barras para Raça e Tipo de escola. Na @fig-grafico-barra-1, temos o gráfico de barras para Raça das/os candidatas/os. Na @fig-grafico-barra-2, temos o gráfico de barras para Tipo de escola das/os candidatas/os. -->
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim nunc faucibus a pellentesque sit amet porttitor eget. Ac ut consequat semper viverra nam. Suspendisse in est ante in nibh mauris cursus mattis molestie. Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Faucibus a pellentesque sit amet porttitor eget dolor morbi. Ut porttitor leo a diam sollicitudin. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Viverra maecenas accumsan lacus vel. Et malesuada fames ac turpis egestas sed tempus urna. Arcu risus quis varius quam quisque id diam vel. Feugiat vivamus at augue eget. Netus et malesuada fames ac turpis egestas maecenas pharetra.
 
-<!-- Olhe as tabelas da @sec-tabela. -->
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim nunc faucibus a pellentesque sit amet porttitor eget. Ac ut consequat semper viverra nam. Suspendisse in est ante in nibh mauris cursus mattis molestie. Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Faucibus a pellentesque sit amet porttitor eget dolor morbi. Ut porttitor leo a diam sollicitudin. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Viverra maecenas accumsan lacus vel. Et malesuada fames ac turpis egestas sed tempus urna. Arcu risus quis varius quam quisque id diam vel. Feugiat vivamus at augue eget. Netus et malesuada fames ac turpis egestas maecenas pharetra.
 
-```{r}
-#| echo: false
-#| label: fig-grafico-barra
-#| fig-cap: "Gráficos de barras"
-#| fig-subcap: ["Raça", "Tipo de escola"]
-#| layout-ncol: 2
-#| out-width: 80%
-
-```
 
 ## Materias e métodos
 
-Para esse estudo será utilizado dados oficiais do ENEM 2022 disponibilizados pelo INEP para o município de Sorocaba/SP. Essa base consta com informações específicas de cada candidato, como o gabarito, as notas, o questionário respondido pelos inscritos no Enem.
+Para realização desse estudo foi utilizado os dados oficiais do ENEM 2022 disponibilizados pelo INEP para o município de Sorocaba/SP. Essa base de dados contém informações detalhadas a respeito de cada candidato, incluindo: gabarito da prova, notas obtidas, tipo de escola, respostas ao questionário social preenchidas durante a inscrição, dentre outras. Neste estudo, serão considerados os dados referentes a 1.000 candidatos selecionados por meio de amostragem aleatória simples.
 
-Além disso, foi elaborado um script em R
+Trata-se de um estudo cuja a abordagem metodologica compreenderá técnicas de análise descritiva e exploratória de dados, tendo como referência teórica Moretin e Bussab (2017). Esse estudo contará ainda com o uso do programa computacional estatístico R aliado aos pacotes do Tidyverse, Janitor, Desctools, Quarto, dentre outros.
 
 ## Resultados
 
 Esta seção apresenta os resultados obtidos a partir da análise dos resultados do Enem 2022 para uma amostra aleatória com 1.000 candidatos da cidade de Sorocoba/SP. Como o objetivo deste trabalho é averiguar se as variáveis raça e tipo de escola influenciam na nota do enem, se faz necessário, primeiramente, entender como essas variáveis estão distribuídas em nossa amostra.
 
-O resultados dispostos na @tbl-tabelas buscam elucidar essa questão. A partir delas, podemos verificar que para essa amostra, o contingente de candidatos presentes auto-declarados brancos (73,3%) é maior que o contingente de candidatos auto-declarados negros (23,3%). Além disso, conforme demonstra a @tbl-tabelas-2, observamos que a maioria desses candidatos são provenientes de instituições públicas, embora mais da metade dos respondentes (55%) não quiseram declarar a natureza de sua instituição de ensino.
+O resultados dispostos nas Tabelas de frequência 1 e 2 buscam elucidar essa questão. A partir delas, podemos verificar que para essa amostra, o contingente de candidatos presentes auto-declarados brancos (73,3%) é maior que o contingente de candidatos auto-declarados negros (23,3%). Além disso, conforme demonstra a Tabela 2, observamos que a maioria desses candidatos são provenientes de instituições públicas, embora mais da metade dos respondentes (55%) não quiseram declarar a natureza de sua instituição de ensino.
 
 ```{r}
-#| label: tbl-tabelas
 #| layout-ncol: 2
-#| tbl-cap: "Tabelas de distribuição de frequências."
-#| tbl-subcap: ["Raça", "Tipo de escola"]
+#| tbl-cap: ["Raça", "Tipo de escola"]
+
 tab_raca <- tabyl(sorocaba, tp_cor_raca) |> 
   adorn_totals() |> 
   adorn_pct_formatting() |> 
@@ -89,9 +81,10 @@ tab_escola <- tabyl(sorocaba, tp_escola) |>
 
 kable(tab_raca)
 kable(tab_escola)
+
 ```
 
-Indo mais afundo nos nossos objetivos, a etapa subsequente tem como objetivo entender como esses diferentes estratos sociais tem desempenhado no enem, sobretudo levando em consideração a sua nota em matemática. Segundo os resultados da @tbl-resumo-raca, verificamos que os melhores desempenhos foram obtidos, em termos de média, pelos candidatos auto-declarados Amarelos, seguido pelos candidatos auto-declarados Brancos. Ainda é possível verificar a tendência de decrescimento da média conforme analisamos os grupos mais vulneráveis socialmente como é o caso dos auto-declarados negros e mais atenuamente, dos indígenas.
+Indo mais afundo nos nossos objetivos, a etapa subsequente tem como objetivo entender como esses diferentes estratos sociais tem desempenhado no enem, sobretudo levando em consideração a sua nota em matemática. Segundo os resultados da @tbl-resumo-raca, verifica-se que os melhores desempenhos em termos de média foram obtidos pelos candidatos auto-declarados Amarelos, seguido pelos candidatos auto-declarados Brancos. Verifica-se ainda a tendência de decrescimento da média conforme analisamos os grupos mais vulneráveis socialmente, como é o caso dos auto-declarados pardos e mais atenuemente, os pretos. Por fim, vale ressaltar que embora incluam-se na amostra candidatos indígenas, a presença de apenas três representantes dessa etnia compreende-se insuficiente para sustentar hipóteses a respeito do desempenho de todo esse corpo social.
 
 ```{r}
 #| label: tbl-resumo-raca
@@ -110,11 +103,12 @@ resumo_tp_cor_raca <- sorocaba |>
 kable(resumo_tp_cor_raca)
 ```
 
-<!-- boxplot + violin plot por tipo de raça -->
-
-<!-- A partir do gráfico , -->
+Não obstante, ao analisarmos a distribuição desses candidatos ao entorno da média, veremos que a maioria dos candidatos negros tiveram desempenho inferior a esse quantitativo. Isso pode ser observado pelo @fig-grafico-caixa-raca em função de sua curva de densidade.
 
 ```{r}
+#| label: fig-grafico-caixa-raca
+#| fig-cap: "Nota de matemática por Cor/Raça"
+
 
 k <- round(1 + log2(1000))
 
@@ -127,11 +121,27 @@ sorocaba |>
 
 ```
 
-As questões que evidenciam a desigualdade social tornam-se ainda mais claras ao observamos os resultados da nota de matemática em função do tipo de escola do candidato. Ao examinarmos a tabela de resumos abaixo, nota-se que o desempenho dos alunos da rede pública é abaixo do esperado se comparado aos candidatos provenientes de instituições particulares.
+```{r}
+resumo_bowley <- sorocaba |> 
+  group_by(tp_cor_raca) |> 
+  summarise(
+    amostra = n(),
+    Bowley = BowleySkew(nu_nota_mt)
+  )
 
-Além disso, o valor de seu desvio-padrão indica uma baixa variação nos resultados individuais desses candidatos, revelando que as estratégias de ensino oriúndas da rede pública não acompanham o modelo educacional vigente na rede privada, resultando em um desnivelamento na nota final dos candidatos dessas instituições.
+resumo_bowley
+```
+
+E pode 
+
+
+As questões relativas a desigualdade social no âmbito de ensino tornam-se ainda mais evidentes ao observamos os resultados da nota de matemática em função do tipo de escola do candidato. Ao examinarmos @tbl-resumo-escola com os resumos abaixo, nota-se que o desempenho dos alunos da rede pública é abaixo do esperado se comparado aos candidatos provenientes de instituições particulares.
+
 
 ```{r}
+#| label: tbl-resumo-escola
+#| tbl-cap: Nota de matemática por escola
+
 resumo_tp_escola <- sorocaba |> 
   group_by(tp_escola) |> 
   summarise(
@@ -145,18 +155,7 @@ resumo_tp_escola <- sorocaba |>
 kable(resumo_tp_escola)
 ```
 
-<!--  boxplot por tipo de escola -->
-
-```{r}
-k <- round(1 + log2(1000))
-
-sorocaba |>
-  ggplot(aes(x = tp_escola, y = nu_nota_mt)) +
-  geom_violin() + 
-  geom_boxplot(width = 0.2, fill = "lightblue") + 
-  labs(x = "Tipo de escola", y = "Nota de matemática") + 
-  theme_bw()
-```
+Além disso, o valor de seu desvio-padrão indica uma baixa variação nos resultados individuais desses candidatos, revelando que as estratégias de ensino oriúndas da rede pública não acompanham o modelo educacional vigente na rede privada, resultando em um desnivelamento na nota final dos candidatos dessas instituições.
 
 Embora os diagrams de caixa apresentem bons indicativos para gerar essas afirmações com confiança, as medidas de assimetria -bowley e -- ratificam esse dado. Observando a tabela a seguir.
 
@@ -174,6 +173,8 @@ momentos <- sorocaba |>
     b2 = kurtosis(nu_nota_mt, type = 3),
   )
 ```
+
+## Conclusão
 
 ## Referências
 
